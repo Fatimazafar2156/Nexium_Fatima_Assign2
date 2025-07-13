@@ -172,14 +172,14 @@ export function TranslationResults({ blogWithTranslation, onNewTranslation }: Tr
                   View Original
                 </a>
               </Button>
-              <Button 
+              {/* <Button 
                 variant="outline" 
                 size="sm"
                 className="bg-slate-100 hover:bg-slate-200 text-slate-700"
               >
                 <Eye className="h-4 w-4 mr-1" />
                  Content
-              </Button>
+              </Button> */}
             </div>
           </CardContent>
         </Card>
