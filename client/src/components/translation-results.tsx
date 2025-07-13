@@ -178,7 +178,7 @@ export function TranslationResults({ blogWithTranslation, onNewTranslation }: Tr
                 className="bg-slate-100 hover:bg-slate-200 text-slate-700"
               >
                 <Eye className="h-4 w-4 mr-1" />
-                View Full Content
+                 Content
               </Button>
             </div>
           </CardContent>

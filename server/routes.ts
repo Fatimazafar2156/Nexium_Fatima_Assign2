@@ -48,7 +48,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const summary = sentences.slice(0, 3).join('. ') + '.';
       
       // Translate to Urdu
-      const urduSummary = translateToUrdu(summary);
+      const urduSummary = await translateToUrdu(summary);
       
       // Create translation record
       const translationData = insertTranslationSchema.parse({
