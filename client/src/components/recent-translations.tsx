@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Newspaper, Leaf, GraduationCap, ArrowRight, Clock } from "lucide-react";
 import { Link } from "wouter";
 import type { BlogWithTranslation } from "@shared/schema";
+import { PgDateString } from "drizzle-orm/pg-core";
 
 export function RecentTranslations() {
   const { data: recentTranslations, isLoading } = useQuery<BlogWithTranslation[]>({
@@ -104,10 +105,10 @@ export function RecentTranslations() {
                       <h3 className="font-medium text-slate-900 truncate">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-slate-500 flex items-center">
+                      {/* <p className="text-sm text-slate-500 flex items-center">
                         <Clock className="h-3 w-3 mr-1" />
-                        {formatDate(item.translation.createdAt)}
-                      </p>
+                        {formatDate(item.translation.createdAt as PgDateString)}
+                      </p> */}
                     </div>
                   </div>
                   <p className="text-slate-600 text-sm mb-4 line-clamp-3" dir="rtl" lang="ur">

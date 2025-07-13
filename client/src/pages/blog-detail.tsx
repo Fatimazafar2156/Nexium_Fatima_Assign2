@@ -231,7 +231,7 @@ export default function BlogDetail() {
               <div className="flex items-center justify-between pt-4 border-t border-slate-200">
                 <div className="flex items-center space-x-2 text-sm text-slate-500">
                   <Clock className="h-4 w-4" />
-                  <span>Translated {formatDate(blog?.translation.createdAt || '')}</span>
+                  {/* <span>Translated {formatDate(blog?.translation.createdAt || '')}</span> */}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Button 
