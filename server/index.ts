@@ -61,8 +61,17 @@ async function init() {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  await init();
+  console.log("📥 Incoming request:", req.url);
 
-  const server = createServer(app);
-  server.emit("request", req, res);
+  try {
+    await init();
+
+    const server = createServer(app);
+    server.emit("request", req, res);
+  } catch (err) {
+    console.error("❌ Server crashed:", err); // this will show up in Vercel logs
+    res.status(500).end("Internal Server Error from handler");
+  }
 }
+
+
