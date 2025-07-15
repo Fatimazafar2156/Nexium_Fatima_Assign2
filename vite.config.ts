@@ -1,8 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
+  base: "/", // ✅ recommended for Vercel & Express static hosting
   plugins: [react()],
   resolve: {
     alias: {
