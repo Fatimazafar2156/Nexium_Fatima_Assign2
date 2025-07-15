@@ -2,11 +2,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express, { Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { registerRoutes } from "./routes.js";
+import { setupVite, serveStatic, log } from "./vite.js";
 
 const app = express();
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -14,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+ let capturedJsonResponse: any;
+
 
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
@@ -37,15 +37,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// 👇 Wrap async logic in IIFE
 (async () => {
-  const server=await registerRoutes(app);
+  const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  app.use((err :any, _req :any, res:any, _next:any) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
     res.status(status).json({ message });
-    //throw err;
   });
 
   if (process.env.NODE_ENV === "development") {
@@ -54,12 +52,12 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-   if (import.meta.url === `file://${process.argv[1]}`) {
-  const port = parseInt(process.env.PORT || "3001", 10);
-  server.listen(port, () => {
-    log(`🚀 Server running locally at http://localhost:${port}`);
-  });
-}
+  if (import.meta.url === `file://${process.argv[1]}`) {
+    const port = parseInt(process.env.PORT || "3001", 10);
+    server.listen(port, () => {
+      log(`🚀 Server running locally at http://localhost:${port}`);
+    });
+  }
 })();
 
 export default app;
